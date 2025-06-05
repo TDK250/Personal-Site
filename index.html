@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Name - Personal & Professional</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 0 30px rgba(0,0,0,0.1);
+            min-height: 100vh;
+        }
+
+        header {
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 300;
+        }
+
+        .tagline {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 1.5rem;
+        }
+
+        nav {
+            margin-top: 1rem;
+        }
+
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 0;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50px;
+            padding: 5px;
+            display: inline-flex;
+        }
+
+        .nav-tab {
+            background: none;
+            border: none;
+            color: white;
+            padding: 12px 25px;
+            cursor: pointer;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .nav-tab:hover {
+            background: rgba(255,255,255,0.1);
+            transform: translateY(-2px);
+        }
+
+        .nav-tab.active {
+            background: rgba(255,255,255,0.2);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .content {
+            padding: 3rem 2rem;
+        }
+
+        .page {
+            display: none;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero-section {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .profile-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            margin: 0 auto 2rem;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .intro-text {
+            font-size: 1.3rem;
+            color: #666;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        .posts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .post-card {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border-left: 4px solid #3498db;
+        }
+
+        .post-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        .post-meta {
+            color: #888;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .post-title {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+
+        .post-excerpt {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .projects-section {
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            margin-bottom: 2rem;
+            color: #2c3e50;
+            text-align: center;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: block;
+            margin: 1rem auto;
+            border-radius: 2px;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            border: 1px solid #eee;
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            transform: translateY(-3px);
+        }
+
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+
+        .project-title {
+            font-size: 1.5rem;
+            color: #2c3e50;
+        }
+
+        .project-tech {
+            background: #e3f2fd;
+            color: #1976d2;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .resume-section {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .experience-item {
+            border-left: 3px solid #3498db;
+            padding-left: 2rem;
+            margin-bottom: 2.5rem;
+            position: relative;
+        }
+
+        .experience-item::before {
+            content: '';
+            width: 10px;
+            height: 10px;
+            background: #3498db;
+            border-radius: 50%;
+            position: absolute;
+            left: -6px;
+            top: 0.5rem;
+        }
+
+        .job-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .company-date {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .contact-card {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .contact-card:hover {
+            background: #e9ecef;
+            transform: translateY(-3px);
+        }
+
+        .contact-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #3498db;
+        }
+
+        .floating-action {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+        }
+
+        .floating-action:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+        }
+
+        @media (max-width: 768px) {
+            .nav-tabs {
+                flex-wrap: wrap;
+                gap: 0.5rem;
+            }
+            
+            .nav-tab {
+                padding: 10px 15px;
+                font-size: 0.9rem;
+            }
+
+            .posts-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .profile-image {
+                width: 150px;
+                height: 150px;
+                font-size: 3rem;
+            }
+
+            .content {
+                padding: 2rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <h1>Your Name</h1>
+                <p class="tagline">Commerce Graduate • Quality Assurance Specialist • Community Leader</p>
+                <nav>
+                    <div class="nav-tabs">
+                        <button class="nav-tab active" onclick="showPage('home')">Home</button>
+                        <button class="nav-tab" onclick="showPage('posts')">Posts & Projects</button>
+                        <button class="nav-tab" onclick="showPage('professional')">Professional</button>
+                        <button class="nav-tab" onclick="showPage('contact')">Connect</button>
+                    </div>
+                </nav>
+            </div>
+        </header>
+
+        <div class="content">
+            <!-- HOME PAGE -->
+            <div id="home" class="page active">
+                <div class="hero-section">
+                    <div class="profile-image">👋</div>
+                    <div class="intro-text">
+                        <p>Welcome to my corner of the internet! I'm a University of Victoria Commerce graduate with a passion for quality assurance, community engagement, and making meaningful impact through both professional work and volunteer leadership.</p>
+                        <br>
+                        <p>Currently working with the Public Guardian and Trustee of BC, I combine analytical skills with a commitment to supporting vulnerable populations. Here you'll find my professional journey, community involvement, and thoughts on business, social impact, and personal growth.</p>
+                    </div>
+                </div>
+
+                <h2 class="section-title">Recent Activity</h2>
+                <div class="posts-grid">
+                    <div class="post-card">
+                        <div class="post-meta">📝 Blog Post • 3 days ago</div>
+                        <div class="post-title">Moving Away from Big Tech Platforms</div>
+                        <div class="post-excerpt">Why I decided to create my own space on the web and what it means for authentic digital connections...</div>
+                    </div>
+                    <div class="post-card">
+                        <div class="post-meta">🛠️ Project Update • 1 week ago</div>
+                        <div class="post-title">New Portfolio Website Launch</div>
+                        <div class="post-excerpt">Just finished redesigning my portfolio with a focus on showcasing both personal and professional work...</div>
+                    </div>
+                    <div class="post-card">
+                        <div class="post-meta">📸 Photo Journal • 2 weeks ago</div>
+                        <div class="post-title">Weekend Photography Walk</div>
+                        <div class="post-excerpt">Explored the local botanical gardens with my camera. Here are some of the moments I captured...</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- POSTS & PROJECTS PAGE -->
+            <div id="posts" class="page">
+                <h2 class="section-title">Posts & Projects</h2>
+                
+                <div class="projects-section">
+                    <h3 style="font-size: 1.8rem; margin-bottom: 2rem; color: #2c3e50;">Recent Projects</h3>
+                    
+                    <div class="project-card">
+                        <div class="project-header">
+                            <div class="project-title">Personal Website Redesign</div>
+                            <div class="project-tech">WordPress</div>
+                        </div>
+                        <p>A complete overhaul of my personal website to serve both personal blogging and professional networking needs. Built with modern design principles and optimized for mobile devices.</p>
+                        <div style="margin-top: 1rem;">
+                            <strong>Features:</strong> Responsive design, integrated portfolio, contact forms, SEO optimization
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-header">
+                            <div class="project-title">Photo Gallery System</div>
+                            <div class="project-tech">JavaScript</div>
+                        </div>
+                        <p>Custom photo gallery solution for showcasing photography work with lazy loading, lightbox functionality, and mobile-optimized viewing experience.</p>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-header">
+                            <div class="project-title">Digital Detox Documentation</div>
+                            <div class="project-tech">Research</div>
+                        </div>
+                        <p>30-day experiment moving away from major social media platforms and documenting the impact on productivity, mental health, and genuine connections.</p>
+                    </div>
+                </div>
+
+                <div class="posts-grid">
+                    <div class="post-card">
+                        <div class="post-meta">📝 Blog • March 15, 2024</div>
+                        <div class="post-title">The Art of Slow Living in a Fast World</div>
+                        <div class="post-excerpt">Exploring how to maintain mindfulness and intentionality in our hyper-connected digital age...</div>
+                    </div>
+                    <div class="post-card">
+                        <div class="post-meta">📱 Tech Review • March 10, 2024</div>
+                        <div class="post-title">Privacy-First Apps Worth Trying</div>
+                        <div class="post-excerpt">A curated list of applications that prioritize user privacy without sacrificing functionality...</div>
+                    </div>
+                    <div class="post-card">
+                        <div class="post-meta">🎨 Creative • March 5, 2024</div>
+                        <div class="post-title">Design Inspiration from Nature</div>
+                        <div class="post-excerpt">How natural patterns and colors influence modern web design and user experience...</div>
+                    </div>
+                    <div class="post-card">
+                        <div class="post-meta">💭 Thoughts • February 28, 2024</div>
+                        <div class="post-title">Building Authentic Online Communities</div>
+                        <div class="post-excerpt">What makes online spaces feel genuine and how we can foster real connections...</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PROFESSIONAL PAGE -->
+            <div id="professional" class="page">
+                <h2 class="section-title">Professional Profile</h2>
+                
+                <div class="resume-section">
+                    <h3 style="font-size: 1.8rem; margin-bottom: 2rem; color: #2c3e50;">Experience</h3>
+                    
+                    <div class="experience-item">
+                        <div class="job-title">Quality Assurance Specialist</div>
+                        <div class="company-date">Public Guardian and Trustee of BC - Child and Youth Services • Jan 2025 - Present</div>
+                        <p>Reviewing reports of trauma to identify opportunities for victim services or legal intervention. Using Microsoft Excel to generate KPI reports and identify gaps in service. Collaborating with fiduciaries to ensure quality of service for clients under the age of 19.</p>
+                    </div>
+
+                    <div class="experience-item">
+                        <div class="job-title">Administrative Assistant</div>
+                        <div class="company-date">Public Guardian and Trustee of BC - Services to Adults • Apr 2024 - Present</div>
+                        <p>Receiving clients and delivering information about the Public Guardian and Trustee. Working with Assessment and Investigative services to contact case participants. Managing office operations and maintaining building security.</p>
+                    </div>
+
+                    <div class="experience-item">
+                        <div class="job-title">Social Media Manager</div>
+                        <div class="company-date">UVic Business Co-op & Career Centre • Jun 2023 - Jan 2024</div>
+                        <p>Designed and executed detailed marketing plans to maximize online engagement. Previously grew the UVic Business Co-op LinkedIn page to over 2000 followers and project managed the Next Stop Co-op event for pre-core business students.</p>
+                    </div>
+
+                    <div class="experience-item">
+                        <div class="job-title">Board Governance Coordinator</div>
+                        <div class="company-date">Victoria Brain Injury Society • Feb 2023 - Apr 2023</div>
+                        <p>Collaborated with the Executive Director and board chair to improve governance infrastructure. Created new three-year strategic plan, rewrote board bylaws, implemented information management systems, and developed board orientation documents.</p>
+                    </div>
+
+                    <div class="experience-item">
+                        <div class="job-title">Consulting Director</div>
+                        <div class="company-date">UVic Consulting Group • Jun 2021 - Jun 2022</div>
+                        <p>Project managed three paid consultation projects for local businesses. Acted as main point of contact between clients and consultants, mentored student consultants, and delivered market research, branding, and strategy packages.</p>
+                    </div>
+
+                    <div class="experience-item">
+                        <div class="job-title">Special Projects Coordinator</div>
+                        <div class="company-date">Victoria Brain Injury Society • May 2021 - Oct 2021</div>
+                        <p>Project managed the first annual Toss the Boss event, raising $87,000 for brain injury survivors with over 250 attendees from 29 companies and 9 sponsors. Managed budgeting, sponsorship, marketing, volunteer coordination, and all event logistics.</p>
+                    </div>
+                </div>
+
+                <div class="resume-section">
+                    <h3 style="font-size: 1.8rem; margin-bottom: 2rem; color: #2c3e50;">Skills & Expertise</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem;">
+                        <div>
+                            <h4 style="color: #3498db; margin-bottom: 1rem;">Professional Skills</h4>
+                            <ul style="list-style: none; line-height: 1.8;">
+                                <li>• Quality Assurance & KPI Analysis</li>
+                                <li>• Microsoft Excel & Data Analysis</li>
+                                <li>• Project Management</li>
+                                <li>• Social Media Marketing</li>
+                                <li>• Event Planning & Coordination</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 style="color: #3498db; margin-bottom: 1rem;">Leadership & Strategy</h4>
+                            <ul style="list-style: none; line-height: 1.8;">
+                                <li>• Board Governance</li>
+                                <li>• Strategic Planning</li>
+                                <li>• Community Engagement</li>
+                                <li>• Fundraising & Sponsorship</li>
+                                <li>• Client Relations</li>
+                            </ul>
+                        </div>
+                    </div>
+                <div class="resume-section">
+                    <h3 style="font-size: 1.8rem; margin-bottom: 2rem; color: #2c3e50;">Education & Leadership</h3>
+                    
+                    <div class="experience-item">
+                        <div class="job-title">Bachelor of Commerce, Entrepreneurship & Cooperative Education</div>
+                        <div class="company-date">University of Victoria • Graduated Aug 2023</div>
+                        <p>Selected for "fast track" program within Gustavson School of Business entrepreneurship specialization. Studied abroad in Seoul, South Korea (Seoul National University). Relevant courses: Operations Management, Leadership & Organizations, Managerial Accounting, Finance.</p>
+                    </div>
+
+                    <div class="experience-item">
+                        <div class="job-title">Vice President of the Board</div>
+                        <div class="company-date">James Bay Community Centre • Nov 2020 - Nov 2023</div>
+                        <p>Worked with board and community stakeholders on strategic planning, human resources, and finances. Participated in creating a four-year strategic plan and served on wage grid adjustment committee.</p>
+                    </div>
+
+                    <div class="experience-item">
+                        <div class="job-title">Senator (Elected Commerce Student Representative)</div>
+                        <div class="company-date">University of Victoria • Jul 2022 - Jul 2023</div>
+                        <p>Served on UVic Senate Committee on Appeals, representing commerce students in university governance and academic policy decisions.</p>  
+                    </div>
+                </div>
+                    <button style="background: linear-gradient(135deg, #667eea, #764ba2); color: white; border: none; padding: 1rem 2rem; border-radius: 25px; font-size: 1.1rem; cursor: pointer; box-shadow: 0 5px 15px rgba(0,0,0,0.2); transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 8px 20px rgba(0,0,0,0.3)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 5px 15px rgba(0,0,0,0.2)'">
+                        Download Resume (PDF)
+                    </button>
+                </div>
+            </div>
+
+            <!-- CONTACT PAGE -->
+            <div id="contact" class="page">
+                <h2 class="section-title">Let's Connect</h2>
+                
+                <div style="text-align: center; margin-bottom: 3rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+                    <p style="font-size: 1.2rem; color: #666; line-height: 1.8;">
+                        I'm always interested in meaningful conversations, collaboration opportunities, and connecting with fellow creatives and professionals. Here's how you can reach me:
+                    </p>
+                </div>
+
+                <div class="contact-grid">
+                    <div class="contact-card">
+                        <div class="contact-icon">📧</div>
+                        <h3>Email</h3>
+                        <p>your.email@domain.com</p>
+                        <p style="color: #888; font-size: 0.9rem;">Best for professional inquiries</p>
+                    </div>
+
+                    <div class="contact-card">
+                        <div class="contact-icon">💼</div>
+                        <h3>Professional Network</h3>
+                        <p>Connect on alternative platforms</p>
+                        <p style="color: #888; font-size: 0.9rem;">Let's build genuine connections</p>
+                    </div>
+
+                    <div class="contact-card">
+                        <div class="contact-icon">📱</div>
+                        <h3>Direct Message</h3>
+                        <p>Contact form on this site</p>
+                        <p style="color: #888; font-size: 0.9rem;">For collaborations & questions</p>
+                    </div>
+                </div>
+
+                <div style="background: #f8f9fa; padding: 3rem; border-radius: 15px; margin-top: 3rem; text-align: center;">
+                    <h3 style="margin-bottom: 1rem; color: #2c3e50;">Open to Opportunities</h3>
+                    <p style="color: #666; margin-bottom: 2rem;">I'm currently available for freelance projects, consulting work, and interesting collaborations. If you have something in mind, let's chat!</p>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 2rem;">
+                        <div style="background: white; padding: 1.5rem; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+                            <strong>Quality Assurance</strong>
+                            <p style="font-size: 0.9rem; color: #666; margin-top: 0.5rem;">Data analysis & reporting</p>
+                        </div>
+                        <div style="background: white; padding: 1.5rem; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+                            <strong>Project Management</strong>
+                            <p style="font-size: 0.9rem; color: #666; margin-top: 0.5rem;">Events & strategic initiatives</p>
+                        </div>
+                        <div style="background: white; padding: 1.5rem; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+                            <strong>Board Governance</strong>
+                            <p style="font-size: 0.9rem; color: #666; margin-top: 0.5rem;">Strategic planning & consulting</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="floating-action" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" title="Back to top">
+            ↑
+        </div>
+    </div>
+
+    <script>
+        function showPage(pageId) {
+            // Hide all pages
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.classList.remove('active'));
+            
+            // Show selected page
+            document.getElementById(pageId).classList.add('active');
+            
+            // Update active tab
+            const tabs = document.querySelectorAll('.nav-tab');
+            tabs.forEach(tab => tab.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // Scroll to top
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+
+        // Add smooth scrolling to page transitions
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabs = document.querySelectorAll('.nav-tab');
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    document.querySelector('.content').style.transform = 'translateY(10px)';
+                    document.querySelector('.content').style.opacity = '0.8';
+                    
+                    setTimeout(() => {
+                        document.querySelector('.content').style.transform = 'translateY(0)';
+                        document.querySelector('.content').style.opacity = '1';
+                    }, 100);
+                });
+            });
+        });
+
+        // Add floating action button functionality
+        window.addEventListener('scroll', function() {
+            const fab = document.querySelector('.floating-action');
+            if (window.scrollY > 300) {
+                fab.style.opacity = '1';
+                fab.style.transform = 'scale(1)';
+            } else {
+                fab.style.opacity = '0.7';
+                fab.style.transform = 'scale(0.9)';
+            }
+        });
+    </script>
+</body>
+</html>
