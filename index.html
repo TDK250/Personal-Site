@@ -4,338 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tom Kerr - Personal & Professional</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            background: white;
-            box-shadow: 0 0 30px rgba(0,0,0,0.1);
-            min-height: 100vh;
-        }
-
-        header {
-            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
-            color: white;
-            padding: 2rem 0;
-            text-align: center;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .header-content h1 {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-            font-weight: 300;
-        }
-
-        .tagline {
-            font-size: 1.1rem;
-            opacity: 0.9;
-            margin-bottom: 1.5rem;
-        }
-
-        nav {
-            margin-top: 1rem;
-        }
-
-        .nav-tabs {
-            display: flex;
-            justify-content: center;
-            gap: 0;
-            background: rgba(255,255,255,0.1);
-            border-radius: 50px;
-            padding: 5px;
-            display: inline-flex;
-        }
-
-        .nav-tab {
-            background: none;
-            border: none;
-            color: white;
-            padding: 12px 25px;
-            cursor: pointer;
-            border-radius: 25px;
-            transition: all 0.3s ease;
-            font-size: 1rem;
-        }
-
-        .nav-tab:hover {
-            background: rgba(255,255,255,0.1);
-            transform: translateY(-2px);
-        }
-
-        .nav-tab.active {
-            background: rgba(255,255,255,0.2);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-        }
-
-        .content {
-            padding: 3rem 2rem;
-        }
-
-        .page {
-            display: none;
-            animation: fadeIn 0.5s ease-in;
-        }
-
-        .page.active {
-            display: block;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .hero-section {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-
-        .profile-image {
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            margin: 0 auto 2rem;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 4rem;
-            color: white;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        }
-
-        .intro-text {
-            font-size: 1.3rem;
-            color: #666;
-            max-width: 800px;
-            margin: 0 auto;
-            line-height: 1.8;
-        }
-
-        .posts-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-            margin-bottom: 3rem;
-        }
-
-        .post-card {
-            background: #f8f9fa;
-            border-radius: 15px;
-            padding: 2rem;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-            border-left: 4px solid #3498db;
-        }
-
-        .post-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-        }
-
-        .post-meta {
-            color: #888;
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
-        }
-
-        .post-title {
-            font-size: 1.4rem;
-            margin-bottom: 1rem;
-            color: #2c3e50;
-        }
-
-        .post-excerpt {
-            color: #666;
-            line-height: 1.6;
-        }
-
-        .projects-section {
-            margin-bottom: 4rem;
-        }
-
-        .section-title {
-            font-size: 2.2rem;
-            margin-bottom: 2rem;
-            color: #2c3e50;
-            text-align: center;
-            position: relative;
-        }
-
-        .section-title::after {
-            content: '';
-            width: 60px;
-            height: 3px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            display: block;
-            margin: 1rem auto;
-            border-radius: 2px;
-        }
-
-        .project-card {
-            background: white;
-            border-radius: 15px;
-            padding: 2rem;
-            margin-bottom: 2rem;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            border: 1px solid #eee;
-            transition: all 0.3s ease;
-        }
-
-        .project-card:hover {
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-            transform: translateY(-3px);
-        }
-
-        .project-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 1rem;
-        }
-
-        .project-title {
-            font-size: 1.5rem;
-            color: #2c3e50;
-        }
-
-        .project-tech {
-            background: #e3f2fd;
-            color: #1976d2;
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 500;
-        }
-
-        .resume-section {
-            background: #f8f9fa;
-            border-radius: 15px;
-            padding: 3rem;
-            margin-bottom: 3rem;
-        }
-
-        .experience-item {
-            border-left: 3px solid #3498db;
-            padding-left: 2rem;
-            margin-bottom: 2.5rem;
-            position: relative;
-        }
-
-        .experience-item::before {
-            content: '';
-            width: 10px;
-            height: 10px;
-            background: #3498db;
-            border-radius: 50%;
-            position: absolute;
-            left: -6px;
-            top: 0.5rem;
-        }
-
-        .job-title {
-            font-size: 1.3rem;
-            font-weight: 600;
-            color: #2c3e50;
-        }
-
-        .company-date {
-            color: #666;
-            margin-bottom: 1rem;
-        }
-
-        .contact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .contact-card {
-            background: #f8f9fa;
-            padding: 2rem;
-            border-radius: 15px;
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-
-        .contact-card:hover {
-            background: #e9ecef;
-            transform: translateY(-3px);
-        }
-
-        .contact-icon {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            color: #3498db;
-        }
-
-        .floating-action {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.5rem;
-            cursor: pointer;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
-            transition: all 0.3s ease;
-        }
-
-        .floating-action:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
-        }
-
-        @media (max-width: 768px) {
-            .nav-tabs {
-                flex-wrap: wrap;
-                gap: 0.5rem;
-            }
-            
-            .nav-tab {
-                padding: 10px 15px;
-                font-size: 0.9rem;
-            }
-
-            .posts-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .profile-image {
-                width: 150px;
-                height: 150px;
-                font-size: 3rem;
-            }
-
-            .content {
-                padding: 2rem 1rem;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
@@ -391,7 +60,7 @@
                 <h2 class="section-title">Posts & Projects</h2>
                 
                 <div class="projects-section">
-                    <h3 style="font-size: 1.8rem; margin-bottom: 2rem; color: #2c3e50;">Recent Projects</h3>
+                    <h3 class="projects-title">Recent Projects</h3>
                     
                     <div class="project-card">
                         <div class="project-header">
@@ -399,7 +68,7 @@
                             <div class="project-tech">WordPress</div>
                         </div>
                         <p>A complete overhaul of my personal website to serve both personal blogging and professional networking needs. Built with modern design principles and optimized for mobile devices.</p>
-                        <div style="margin-top: 1rem;">
+                        <div class="project-features">
                             <strong>Features:</strong> Responsive design, integrated portfolio, contact forms, SEO optimization
                         </div>
                     </div>
@@ -450,7 +119,7 @@
                 <h2 class="section-title">Professional Profile</h2>
                 
                 <div class="resume-section">
-                    <h3 style="font-size: 1.8rem; margin-bottom: 2rem; color: #2c3e50;">Experience</h3>
+                    <h3 class="resume-title">Experience</h3>
                     
                     <div class="experience-item">
                         <div class="job-title">Quality Assurance Specialist</div>
@@ -490,11 +159,11 @@
                 </div>
 
                 <div class="resume-section">
-                    <h3 style="font-size: 1.8rem; margin-bottom: 2rem; color: #2c3e50;">Skills & Expertise</h3>
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem;">
+                    <h3 class="resume-title">Skills & Expertise</h3>
+                    <div class="skills-grid">
                         <div>
-                            <h4 style="color: #3498db; margin-bottom: 1rem;">Professional Skills</h4>
-                            <ul style="list-style: none; line-height: 1.8;">
+                            <h4 class="skills-header">Professional Skills</h4>
+                            <ul class="skills-list">
                                 <li>• Quality Assurance & KPI Analysis</li>
                                 <li>• Microsoft Excel & Data Analysis</li>
                                 <li>• Project Management</li>
@@ -503,8 +172,8 @@
                             </ul>
                         </div>
                         <div>
-                            <h4 style="color: #3498db; margin-bottom: 1rem;">Leadership & Strategy</h4>
-                            <ul style="list-style: none; line-height: 1.8;">
+                            <h4 class="skills-header">Leadership & Strategy</h4>
+                            <ul class="skills-list">
                                 <li>• Board Governance</li>
                                 <li>• Strategic Planning</li>
                                 <li>• Community Engagement</li>
@@ -514,7 +183,7 @@
                         </div>
                     </div>
                 <div class="resume-section">
-                    <h3 style="font-size: 1.8rem; margin-bottom: 2rem; color: #2c3e50;">Education & Leadership</h3>
+                    <h3 class="resume-title">Education & Leadership</h3>
                     
                     <div class="experience-item">
                         <div class="job-title">Bachelor of Commerce, Entrepreneurship & Cooperative Education</div>
@@ -534,7 +203,7 @@
                         <p>Served on UVic Senate Committee on Appeals, representing commerce students in university governance and academic policy decisions.</p>  
                     </div>
                 </div>
-                    <button style="background: linear-gradient(135deg, #667eea, #764ba2); color: white; border: none; padding: 1rem 2rem; border-radius: 25px; font-size: 1.1rem; cursor: pointer; box-shadow: 0 5px 15px rgba(0,0,0,0.2); transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 8px 20px rgba(0,0,0,0.3)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 5px 15px rgba(0,0,0,0.2)'">
+                    <button class="download-resume-btn">
                         Download Resume (PDF)
                     </button>
                 </div>
@@ -544,8 +213,8 @@
             <div id="contact" class="page">
                 <h2 class="section-title">Let's Connect</h2>
                 
-                <div style="text-align: center; margin-bottom: 3rem; max-width: 600px; margin-left: auto; margin-right: auto;">
-                    <p style="font-size: 1.2rem; color: #666; line-height: 1.8;">
+                <div class="contact-intro">
+                    <p>
                         I'm always interested in meaningful conversations, collaboration opportunities, and connecting with fellow creatives and professionals. Here's how you can reach me:
                     </p>
                 </div>
@@ -555,40 +224,38 @@
                         <div class="contact-icon">📧</div>
                         <h3>Email</h3>
                         <p>tom.e4eov@simplelogin.com</p>
-                        <p style="color: #888; font-size: 0.9rem;">Best for professional inquiries</p>
+                        <p class="contact-note">Best for professional inquiries</p>
                     </div>
-
                     <div class="contact-card">
                         <div class="contact-icon">💼</div>
                         <h3>Professional Network</h3>
                         <p>Connect on alternative platforms</p>
-                        <p style="color: #888; font-size: 0.9rem;">Let's build genuine connections</p>
+                        <p class="contact-note">Let's build genuine connections</p>
                     </div>
-
                     <div class="contact-card">
                         <div class="contact-icon">📱</div>
                         <h3>Direct Message</h3>
                         <p>Contact form on this site</p>
-                        <p style="color: #888; font-size: 0.9rem;">For collaborations & questions</p>
+                        <p class="contact-note">For collaborations & questions</p>
                     </div>
                 </div>
 
-                <div style="background: #f8f9fa; padding: 3rem; border-radius: 15px; margin-top: 3rem; text-align: center;">
-                    <h3 style="margin-bottom: 1rem; color: #2c3e50;">Open to Opportunities</h3>
-                    <p style="color: #666; margin-bottom: 2rem;">I'm currently available for freelance projects, consulting work, and interesting collaborations. If you have something in mind, let's chat!</p>
+                <div class="opportunities-section">
+                    <h3 class="opportunities-title">Open to Opportunities</h3>
+                    <p class="opportunities-desc">I'm currently available for freelance projects, consulting work, and interesting collaborations. If you have something in mind, let's chat!</p>
                     
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 2rem;">
-                        <div style="background: white; padding: 1.5rem; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+                    <div class="opportunities-grid">
+                        <div class="opportunity-card">
                             <strong>Quality Assurance</strong>
-                            <p style="font-size: 0.9rem; color: #666; margin-top: 0.5rem;">Data analysis & reporting</p>
+                            <p>Data analysis & reporting</p>
                         </div>
-                        <div style="background: white; padding: 1.5rem; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+                        <div class="opportunity-card">
                             <strong>Project Management</strong>
-                            <p style="font-size: 0.9rem; color: #666; margin-top: 0.5rem;">Events & strategic initiatives</p>
+                            <p>Events & strategic initiatives</p>
                         </div>
-                        <div style="background: white; padding: 1.5rem; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+                        <div class="opportunity-card">
                             <strong>Board Governance</strong>
-                            <p style="font-size: 0.9rem; color: #666; margin-top: 0.5rem;">Strategic planning & consulting</p>
+                            <p>Strategic planning & consulting</p>
                         </div>
                     </div>
                 </div>
